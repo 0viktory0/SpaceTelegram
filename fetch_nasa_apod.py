@@ -10,11 +10,11 @@ def fetch_nasa_apod(token, directory):
     payload = {"count": 30, "api_key": token}
     response = requests.get(apod_url, params=payload)
     response.raise_for_status()
-    apod_img = response.json()
+    apod_imgages = response.json()
 
-    for i, image_url in enumerate(apod_img):
-        image_url = apod_img[i]["url"]
-        download_image(image_url, os.path.join(directory, f"nasa_space{i}{get_file_extension(image_url)}"), params=None)
+    for num, image_url in enumerate(apod_imgages):
+        image_url = apod_imgages[num]["url"]
+        download_image(image_url, os.path.join(directory, f"nasa_space{num}{get_file_extension(image_url)}"), params=None)
 
 
 if __name__ == "__main__":
